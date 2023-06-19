@@ -3,7 +3,7 @@
   user: root
   gather_facts: no
   tasks:
-  - echo: echo 'test'
+  - shell: echo 'test'
     register: foo
   - debug: msg="the echo was {{ foo_stdout }}"
-  - toutch: touch windson
+  - shell: touch windson
