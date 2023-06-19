@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   connection: local
   user: root
   gather_facts: no
@@ -6,3 +6,4 @@
   - shell: echo 'test'
     register: foo
   - debug: msg="the echo was {{ foo.stdout }}"
+  - shell: touch windson
