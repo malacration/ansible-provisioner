@@ -2,20 +2,20 @@
  - hosts: all
    gather_facts: no
    become: true
-tasks:
-  - name: Add a new user named devops
-    user:
-      name: devops
-      shell: /bin/bash
-      password: "{{ lookup('env', 'devops_password') }}"
-  - name: Add devops user to the sudoers
-      copy:
-      dest: "/etc/sudoers.d/devops"
-      content: "devops  ALL=(ALL)  NOPASSWD: ALL"
-  - name: Deploy SSH Key
-      authorized_key: user=devops
-                      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-                      state=present
+   tasks:
+   - name: Add a new user named devops
+     user:
+       name: devops
+       shell: /bin/bash
+       password: "{{ lookup('env', 'devops_password') }}"
+   - name: Add devops user to the sudoers
+       copy:
+       dest: "/etc/sudoers.d/devops"
+       content: "devops  ALL=(ALL)  NOPASSWD: ALL"
+   - name: Deploy SSH Key
+       authorized_key: user=devops
+                       key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+                       state=present
 # - name: Disable Password Authentication
 #      lineinfile:
 #            dest=/etc/ssh/sshd_config
