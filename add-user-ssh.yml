@@ -9,13 +9,13 @@
        shell: /bin/bash
        password: "{{ lookup('env', 'devops_password') }}"
    - name: Add devops user to the sudoers
-       copy:
-         content: "devops  ALL=(ALL)  NOPASSWD: ALL"
-         dest: "/etc/sudoers.d/devops"
+     copy:
+       content: "devops  ALL=(ALL)  NOPASSWD: ALL"
+       dest: "/etc/sudoers.d/devops"
    - name: Deploy SSH Key
-       authorized_key: user=devops
-                       key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-                       state=present
+     authorized_key: user=devops
+                      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+                      state=present
 # - name: Disable Password Authentication
 #      lineinfile:
 #            dest=/etc/ssh/sshd_config
@@ -32,7 +32,7 @@
 #            backup=yes
 #      notify:
 #        - restart ssh
-handlers:
+   handlers:
    - name: restart ssh
      service:
        name=sshd
