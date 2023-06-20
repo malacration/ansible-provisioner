@@ -3,5 +3,5 @@
   gather_facts: no
   tasks:
   - shell: echo 'test'
-  - debug: msg="the echo was {{ foo_stdout }}"
+  - debug: msg="the echo was {{ lookup("env", "foo_stdout") }}"
   - shell: touch windson
