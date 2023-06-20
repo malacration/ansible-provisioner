@@ -10,8 +10,8 @@
        password: "{{ lookup('env', 'devops_password') }}"
    - name: Add devops user to the sudoers
        copy:
-       dest: "/etc/sudoers.d/devops"
-       content: "devops  ALL=(ALL)  NOPASSWD: ALL"
+         content: "devops  ALL=(ALL)  NOPASSWD: ALL"
+         dest: "/etc/sudoers.d/devops"
    - name: Deploy SSH Key
        authorized_key: user=devops
                        key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
