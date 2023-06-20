@@ -6,7 +6,7 @@
   - name: Copy the key add to authorized_keys using Ansible module
     tags: runcd
     authorized_key:
-      user: "{{ ansible_user }}"
+      user: "{{ lookup('env', 'authorized_key_user') }}"
       key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
       state: present
 # - name: Disable Password Authentication
