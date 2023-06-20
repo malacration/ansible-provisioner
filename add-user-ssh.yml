@@ -3,20 +3,12 @@
   gather_facts: no
   become: true
   tasks:
-  - name: Fetch the keyfile from the node to master
-    tags: run
-    fetch: 
-      src: "~/.ssh/id_rsa.pub"
-      dest: "buffer/{{ansible_hostname}}-id_rsa.pub"
-      flat: yes
   - name: Copy the key add to authorized_keys using Ansible module
     tags: runcd
     authorized_key:
       user: "{{ ansible_user }}"
-      key: "{{ lookup('file','buffer/{{item}}-id_rsa.pub')}}"
-      when: "{{ item != ansible_hostname }}"
-      with_items: 
-        - "{{ groups['multi'] }}"
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      state: present
 # - name: Disable Password Authentication
 #      lineinfile:
 #            dest=/etc/ssh/sshd_config
