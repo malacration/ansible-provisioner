@@ -1,7 +1,0 @@
-- hosts: all
-  connection: ssh
-  gather_facts: no
-  tasks:
-  - shell: echo 'test'
-  - debug: msg="the echo was {{ lookup("env", "foo_stdout") }}"
-  - shell: touch windson
