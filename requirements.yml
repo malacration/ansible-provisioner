@@ -1,1 +1,2 @@
-community.docker
+collections:
+- name: community.docker

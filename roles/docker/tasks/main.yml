@@ -1,3 +1,1 @@
 ---
-- name: Install Docker
-  local_action: command ansible-galaxy install -r ./roles/docker/requirements.yml
