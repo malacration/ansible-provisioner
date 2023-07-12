@@ -1,0 +1,6 @@
+- hosts: all
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - shell: echo 'test'
+  - debug: msg="the echo was {{foo_stdout"}}"
