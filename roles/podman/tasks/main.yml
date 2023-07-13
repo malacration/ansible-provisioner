@@ -1,0 +1,20 @@
+---
+# tasks file for podman
+
+
+- name: Install Centos
+  ansible.builtin.import_tasks: centos.yml
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_version']|int <= 8
+
+
+- name: Install Redhat
+  ansible.builtin.import_tasks: redhat.yml
+  when: ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_version']|int <= 9
+
+
+- name: Install Ubuntu
+  ansible.builtin.import_tasks: ubuntu.yml
+  when: ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "18.04"
+
+
+- ansible.builtin.import_tasks: configure.yml

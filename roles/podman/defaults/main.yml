@@ -1,0 +1,4 @@
+---
+# defaults file for podman
+
+proc_max_user_namespaces: "15659"

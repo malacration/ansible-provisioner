@@ -1,0 +1,6 @@
+---
+- name: Install CentOS packages
+  package:
+    name: "{{ centos_packages }}"
+    state: present
+  become: yes

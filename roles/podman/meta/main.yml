@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Andrew Ramires
+  description: Podman
+  min_ansible_version: 2.13
+
+
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+        - 30
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Ubuntu
+      versions:
+        - bionic
+    - name: Debian
+      versions:
+        - buster
+
+  galaxy_tags:
+    - debian
+    - ubuntu
+    - rhel
+    - centos
+    - fedora

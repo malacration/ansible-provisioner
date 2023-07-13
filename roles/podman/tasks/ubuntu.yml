@@ -1,0 +1,13 @@
+---
+# Install podman on Ubuntu
+
+- name: add podman ppa
+  apt_repository:
+    repo: ppa:projectatomic/ppa
+  become: yes
+
+- name: install Ubuntu packages
+  package:
+    name: "{{ ubuntu_packages }}"
+    state: present
+  become: yes

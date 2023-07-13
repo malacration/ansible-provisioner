@@ -1,0 +1,18 @@
+---
+
+centos_packages:
+  - podman
+  - buildah
+  - skopeo
+
+redhat_packages:
+  - container-tools
+  - podman-docker
+
+ubuntu_packages:
+  - software-properties-common
+  - uidmap
+  - podman
+  - buildah
+  - skopeo
+  - podman-docker
