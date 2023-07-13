@@ -1,0 +1,25 @@
+---
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version | int}}.yml"
+    - "../vars/{{ ansible_distribution }}.yml"
+    - "../vars/{{ ansible_os_family }}.yml"
+    - "../vars/default.yml"
+
+- include: apt_package.yml
+  when: ansible_pkg_mgr == 'apt'
+- include: yum_package.yml
+  when: ansible_pkg_mgr == 'yum'
+
+
+
+- name: Ensure Docker is started
+  when: not ansible_check_mode
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+  tags:
+    - docker
+    - service

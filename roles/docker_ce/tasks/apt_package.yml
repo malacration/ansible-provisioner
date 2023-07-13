@@ -1,0 +1,58 @@
+---
+- name: Add Docker apt-key
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /usr/share/keyrings/docker.asc
+    mode: "0644"
+  become: true
+  tags:
+    - docker
+    - setup
+
+- name: Add Docker apt-repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ signature }} https://download.docker.com/linux/{{ distribution }} {{ release }} stable"
+    state: present
+    update_cache: true
+  become: true
+  vars:
+    signature: "[arch=amd64 signed-by=/usr/share/keyrings/docker.asc]"
+    distribution: "{{ ansible_distribution | lower }}"
+    release: "{{ ansible_distribution_release | lower }}"
+  tags:
+    - docker
+    - setup
+
+- name: Ensure dependencies are present
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - python3-pip
+    state: present
+  become: true
+  tags:
+    - docker
+    - setup
+
+- name: Ensure Docker is installed
+  when: not ansible_check_mode
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+    state: present
+    update_cache: true
+  become: true
+  tags:
+    - docker
+    - setup
+
+- name: Ensure python modules are installed
+  when: not ansible_check_mode
+  ansible.builtin.pip:
+    name:
+      - docker
+      - docker-compose
+  become: true
+  tags:
+    - docker
+    - setup

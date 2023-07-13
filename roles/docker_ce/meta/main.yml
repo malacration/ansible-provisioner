@@ -1,0 +1,7 @@
+galaxy_info:
+  author: Andrew Ramires
+  description: Install docker
+
+  min_ansible_version: "2.13"
+
+dependencies: []
