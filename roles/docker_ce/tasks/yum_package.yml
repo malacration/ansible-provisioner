@@ -3,8 +3,7 @@
 - name: set mydistribution
   ansible.builtin.set_fact:
     mydistribution: "{{ 'rhel' 
-      if (ansible_distribution == 'Red Hat Enterprise Linux') 
-      else if(ansible_distribution == 'RedHat')
+      if (ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat') 
       else (ansible_distribution | lower) }}
     "
 
