@@ -1,6 +1,5 @@
 # Instalar pacotes basicos para rodar o kubernetes
 - name: Install Docker
   hosts: all
-  tasks:
-    - name: echo
-      shell: echo 'test'
+    roles:
+    - { role: docker_ce }

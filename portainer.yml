@@ -2,7 +2,7 @@
 - name: Executando Playbook do portainer
   hosts: all
   roles:
-    - { role: docker }
+    - { role: docker_ce }
   tasks:
     - name: echo
       shell: echo 'test'
