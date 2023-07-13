@@ -1,0 +1,17 @@
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: molecule-ubuntu
+    image: ubuntu
+  - name: molecule-centos
+    image: centos
+provisioner:
+  name: ansible
+  env:
+      ANSIBLE_ROLES_PATH: ./../../roles
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra

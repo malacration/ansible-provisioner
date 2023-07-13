@@ -16,13 +16,13 @@
 
 
 
-- name: Ensure Docker is started
-  when: not ansible_check_mode
-  ansible.builtin.service:
-    name: docker
-    state: started
-    enabled: true
-  become: true
-  tags:
-    - docker
-    - service
+# - name: Ensure Docker is started
+#   when: not ansible_check_mode
+#   ansible.builtin.service:
+#     name: docker
+#     state: started
+#     enabled: true
+#   become: true
+#   tags:
+#     - docker
+#     - service
