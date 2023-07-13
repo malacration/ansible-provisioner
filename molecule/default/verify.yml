@@ -1,0 +1,8 @@
+- name: Verify
+    hosts: all
+    become: true
+    tasks:
+    - name: Initialize role without actually running it
+        ansible.builtin.include_role:
+        name: docker_ce
+        tasks_from: init

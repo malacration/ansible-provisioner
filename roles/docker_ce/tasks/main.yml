@@ -6,9 +6,12 @@
     - "../vars/{{ ansible_os_family }}.yml"
     - "../vars/default.yml"
 
-- include: apt_package.yml
+- name: Apply apt package task
+  ansible.builtin.import_tasks: apt_package.yml
   when: ansible_pkg_mgr == 'apt'
-- include: yum_package.yml
+
+- name: Apply yum package task
+  ansible.builtin.import_tasks: yum_package.yml
   when: ansible_pkg_mgr == 'yum'
 
 
