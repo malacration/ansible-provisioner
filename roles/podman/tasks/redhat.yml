@@ -1,8 +1,30 @@
 ---
 # Install podman on RedHat
 
-- name: install RedHat packages
+- name: Install RedHat packages
   package:
     name: "{{ redhat_packages }}"
     state: present
   become: yes
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ./../handlers/docker
+    dest: /usr/local/bin/docker
+    mode: u=xrw,g=r,o=r
+
+- name: Create nodocker file
+  shell: touch /etc/containers/nodocker
+
+- name: Install Docker compose
+  shell:  |
+    curl -SL https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-linux-{{ansible_machine}} -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+
+- name: Enable podman.socket
+  shell:  |
+    systemctl enable --now podman.socket
+
+
+
+#/usr/lib/systemd/system/podman.socket
