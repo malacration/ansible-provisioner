@@ -2,7 +2,7 @@
 - name: Executando Playbook do portainer
   hosts: all
   roles:
-    - { role: podman }
+    - { role: ../../roles/podman }
   tasks:
     - name: Create volume for portainer
       containers.podman.podman_volume:
