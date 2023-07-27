@@ -1,0 +1,29 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  roles:
+  - { role: podman }
+  tasks:
+    - name: Example assertion
+      ansible.builtin.assert:
+        that: true
+
+    - name: Check that the somefile.conf exists
+      stat:
+        path: ~/.config/containers/storage.conf
+      register: stat_result
+
+    - name: Verifica se arquivo existe
+      ansible.builtin.assert:
+        that: stat_result.stat.exists
+
+
+    - name: "Read a file content"
+      shell: |
+        cat ~/.config/containers/storage.conf
+      register: file_content
+
+    - name: "Print the file content to a console"
+      debug:
+        msg: "{{ stat_result.stat.exists }}"

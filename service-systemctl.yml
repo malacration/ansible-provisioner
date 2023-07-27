@@ -1,0 +1,24 @@
+# Instalar pacotes basicos para rodar o kubernetes
+- name: Executando Playbook do portainer
+  hosts: all
+  roles:
+    - { role: podman }
+  tasks:
+    - name: Create volume for portainer
+      containers.podman.podman_volume:
+        state: present
+        name: portainer_data
+
+    - name: Install Portainer
+      containers.podman.podman_container:
+        name: portainer
+        image: docker.io/portainer/portainer-ce:latest
+        state: started
+        privileged: true
+        restart_policy: "always"
+        volume:
+          - /run/podman/podman.sock:/var/run/docker.sock
+          - portainer_data:/data
+        ports:
+            - "8000:8000"
+            - "9443:9443"

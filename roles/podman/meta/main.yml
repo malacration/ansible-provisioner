@@ -3,6 +3,8 @@ galaxy_info:
   author: Andrew Ramires
   description: Podman
   min_ansible_version: 2.13
+  role_name: podman
+  namespace: andrewramires
 
 
   platforms:

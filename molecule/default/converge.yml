@@ -1,9 +1,0 @@
----
-- name: Converge
-  hosts: all
-  roles:
-    - role: docker_ce
-  tasks:
-    - name: Print some info
-      ansible.builtin.debug:
-        msg: "{{ groups }}"

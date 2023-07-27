@@ -1,6 +1,17 @@
 ---
 # tasks file for podman
 
+- name: ensures ~/.config/containers dir exists
+  file: 
+    path: ~/.config/containers
+    state: directory
+
+- name: copy storage file
+  ansible.builtin.copy:
+    src: files/storage.conf
+    dest: ~/.config/containers/storage.conf
+    mode: 0664
+
 
 - name: Install Centos
   ansible.builtin.import_tasks: centos.yml
