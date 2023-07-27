@@ -1,6 +1,0 @@
-molecule==5.1.0
-ansible>2.13
-ansible-lint==4.1.0
-docker==4.0.2
-boto3>1.12
-molecule-plugins[docker]
