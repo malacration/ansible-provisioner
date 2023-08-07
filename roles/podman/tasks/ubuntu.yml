@@ -1,13 +1,12 @@
 ---
-# Install podman on Ubuntu
 
-- name: add podman ppa
-  apt_repository:
-    repo: ppa:projectatomic/ppa
+- name: Apt-update
+  ansible.builtin.apt:
+    update_cache: yes
   become: yes
 
-- name: install Ubuntu packages
-  package:
+
+- name: Install Ubuntu packages
+  ansible.builtin.apt:
     name: "{{ ubuntu_packages }}"
-    state: present
   become: yes

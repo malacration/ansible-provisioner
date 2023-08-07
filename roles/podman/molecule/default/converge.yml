@@ -21,9 +21,9 @@
 
     - name: "Read a file content"
       shell: |
-        cat ~/.config/containers/storage.conf
-      register: file_content
+        cat /etc/containers/storage.conf
+      register: storage
 
     - name: "Print the file content to a console"
       debug:
-        msg: "{{ stat_result.stat.exists }}"
+        msg: "{{ storage }}"

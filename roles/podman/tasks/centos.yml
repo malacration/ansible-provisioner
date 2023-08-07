@@ -1,4 +1,5 @@
 ---
+
 - name: Install CentOS packages
   package:
     name: "{{ centos_packages }}"

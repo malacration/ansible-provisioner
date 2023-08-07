@@ -1,3 +1,4 @@
 collections:
 - name: community.docker
 - name: containers.podman
+- name: riemers.gitlab-runner

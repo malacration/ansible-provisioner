@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: ubuntu
-    image: ubuntu
+  - name: centos
+    image: quay.io/centos/centos:stream8
 provisioner:
   name: ansible
   log: true

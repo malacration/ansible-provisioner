@@ -25,7 +25,7 @@
 
 - name: Install Ubuntu
   ansible.builtin.import_tasks: ubuntu.yml
-  when: ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "18.04"
+  when: ansible_facts['distribution'] == "Ubuntu"
 
 
 - ansible.builtin.import_tasks: configure.yml
