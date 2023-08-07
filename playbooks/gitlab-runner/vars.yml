@@ -5,9 +5,7 @@ gitlab_runner_runners:
     executor: docker
     docker_image: 'alpine'
     tags:
-      - node
-      - ruby
-      - mysql
+      - terraform
     docker_volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/cache"
