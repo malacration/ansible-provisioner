@@ -1,4 +1,10 @@
+# requirements.yml
+
+
 collections:
-- name: community.docker
-- name: containers.podman
-- name: riemers.gitlab-runner
+  - name: community.docker
+  - name: containers.podman
+
+roles:
+  - name: riemers.gitlab-runner
+    version: v2.0.2
