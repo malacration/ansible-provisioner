@@ -3,4 +3,5 @@
   vars_files:
     - vars.yml
   roles:
+    - { role: ../../roles/podman }
     - { role: riemers.gitlab-runner }
