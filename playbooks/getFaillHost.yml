@@ -8,7 +8,7 @@
         - debug:
             var: ansible_play_hosts
         - set_fact:
-            down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts)|join('\n') }}"
+            down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts)|join('config.uuid') }}"
         - copy:
             content: "{{ down }}"
             dest: "./result.txt"
