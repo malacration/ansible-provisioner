@@ -3,9 +3,8 @@
 - name: Set the state of a virtual machine to poweroff
   community.vmware.vmware_guest_powerstate:
     uuid: "{{ config.uuid }}"
-    state: powered-off
+    state: powered-on
     validate_certs: false
-  when: state != 'powered-on'
   delegate_to: localhost
   tags: always
 
