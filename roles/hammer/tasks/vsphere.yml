@@ -1,0 +1,39 @@
+---
+
+
+- name: Set the state of a virtual machine to poweroff
+  community.vmware.vmware_guest_powerstate:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    name: "{{ guest_name }}"
+    state: powered-off
+    validate_certs: false
+  delegate_to: localhost
+  tags: [ 'never', 'restart-vm' ]
+
+
+- name: Wait for the virtual machine to shutdown
+  community.vmware.vmware_guest_powerstate:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    name: "{{ guest_name }}"
+    state: shutdown-guest
+    state_change_timeout: 200
+    validate_certs: false
+  delegate_to: localhost
+  tags: [ 'never', 'restart-vm' ]
+
+
+- name: Automatically answer if a question locked a virtual machine
+  block:
+    - name: Power on a virtual machine without the answer param
+      community.vmware.vmware_guest_powerstate:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: false
+        name: "{{ guest_name }}"
+        state: powered-on
+      tags: [ 'never', 'restart-vm' ]

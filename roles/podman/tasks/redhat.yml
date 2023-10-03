@@ -7,6 +7,11 @@
     state: present
   become: yes
 
+- name: Enable socket
+  ansible.builtin.service:
+    name: podman.socket
+    state: started
+    enabled: yes
 
 - name: Modify runroot storage path
   ansible.builtin.lineinfile:

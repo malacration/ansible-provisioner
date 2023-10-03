@@ -1,0 +1,19 @@
+---
+
+- name: Start service {{ service_name }}, if not started
+  ansible.builtin.service:
+    name: '{{ service_name }}'
+    state: started
+  when: "'force' not in ansible_run_tags"
+  tags: always
+
+
+- name: Force Restar Service {{ service_name }}
+  ansible.builtin.service:
+    name: '{{ service_name }}'
+    state: restarted
+  tags: [ 'never', 'force' ]
+
+
+  - name: Add vsphere tasks
+    ansible.builtin.import_tasks: vsphere.yml

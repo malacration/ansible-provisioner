@@ -1,0 +1,7 @@
+---
+galaxy_info:
+  author: Andrew Ramires
+  description: Hit with a hammer on service
+  min_ansible_version: 2.13
+  role_name: hammer
+  namespace: andrewramires

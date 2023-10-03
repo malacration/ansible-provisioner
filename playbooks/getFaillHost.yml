@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+    - block:
+        - debug:
+            var: ansible_play_hosts_all
+        - debug:
+            var: ansible_play_hosts
+        - set_fact:
+            down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts)|join('\n') }}"
+        - copy:
+            content: "{{ down }}"
+            dest: "./result.txt"
+          delegate_to: localhost
+      run_once: true
+
+    - name: read contents of a file
+      set_fact:
+        file_contents: "{{ lookup('file', './result.txt') }}"
+      delegate_to: localhost
+      ignore_errors: true
+      ignore_unreachable: true
