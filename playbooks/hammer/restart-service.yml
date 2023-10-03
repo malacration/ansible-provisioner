@@ -2,5 +2,7 @@
 - name: Batendo em um serviço
   hosts: all
   gather_facts: true
+  ignore_unreachable: yes
   roles:
     - { role: ../../../roles/hammer }
+

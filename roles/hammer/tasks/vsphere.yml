@@ -5,7 +5,9 @@
     uuid: "{{ config.uuid }}"
     state: powered-on
     validate_certs: false
+  when: connection_test.unreachable is defined
   delegate_to: localhost
+  ignore_unreachable: true
   tags: always
 
 

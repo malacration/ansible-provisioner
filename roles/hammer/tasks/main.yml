@@ -1,5 +1,4 @@
 ---
-
 - name: Start service {{ service_name }}, if not started
   ansible.builtin.service:
     name: '{{ service_name }}'
