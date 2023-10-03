@@ -20,11 +20,9 @@
   tags: [ 'never', 'restart-vm' ]
 
 
-- name: Automatically answer if a question locked a virtual machine
-  block:
-    - name: Power on a virtual machine without the answer param
-      community.vmware.vmware_guest_powerstate:
-        validate_certs: false
-        uuid: "{{ config.uuid }}"
-        state: powered-on
-      tags: [ 'never', 'restart-vm' ]
+- name: Set the state of a virtual machine to poweron
+  community.vmware.vmware_guest_powerstate:
+    validate_certs: false
+    uuid: "{{ config.uuid }}"
+    state: powered-on
+  tags: [ 'never', 'restart-vm' ]
