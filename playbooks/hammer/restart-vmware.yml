@@ -1,0 +1,6 @@
+---
+- name: Batendo em um serviço
+  hosts: all
+  gather_facts: true
+  roles:
+    - { role: ../../../roles/hammer }

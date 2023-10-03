@@ -1,9 +1,20 @@
 ---
+- name: Verificando quem é acessivel
+  ping:
+  register: connection_test
+  ignore_errors: yes
+  ignore_unreachable: yes
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+    - "{{connection_test}}"
+
 - name: Start service {{ service_name }}, if not started
   ansible.builtin.service:
     name: '{{ service_name }}'
     state: started
-  when: "'force' not in ansible_run_tags"
+  when: "'force' not in ansible_run_tags and connection_test.unreachable is not defined"
   tags: always
 
 
@@ -12,6 +23,8 @@
     name: '{{ service_name }}'
     state: restarted
   tags: [ 'never', 'force' ]
+  ignore_errors: true
+  ignore_unreachable: true
 
 
 - ansible.builtin.import_tasks: ./vsphere.yml
