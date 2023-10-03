@@ -1,11 +1,13 @@
 ---
 
-
-- ansible.builtin.import_tasks: ./fail.yml
-
-- name: debug result file
-  debug:
-    var: file_contents
+- name: Set the state of a virtual machine to poweroff
+  community.vmware.vmware_guest_powerstate:
+    uuid: "{{ config.uuid }}"
+    state: powered-off
+    validate_certs: false
+  when: config.state != 'powered-on'
+  delegate_to: localhost
+  tags: always
 
 
 - name: Set the state of a virtual machine to poweroff
