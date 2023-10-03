@@ -3,9 +3,6 @@
 
 - name: Set the state of a virtual machine to poweroff
   community.vmware.vmware_guest_powerstate:
-    hostname: '{{ vcenter_hostname }}'
-    username: '{{ vcenter_username }}'
-    password: '{{ vcenter_password }}'
     uuid: "{{ config.uuid }}"
     state: powered-off
     validate_certs: false
@@ -15,9 +12,6 @@
 
 - name: Wait for the virtual machine to shutdown
   community.vmware.vmware_guest_powerstate:
-    hostname: "{{ vcenter_hostname }}"
-    username: "{{ vcenter_username }}"
-    password: "{{ vcenter_password }}"
     uuid: "{{ config.uuid }}"
     state: shutdown-guest
     state_change_timeout: 200
@@ -30,9 +24,6 @@
   block:
     - name: Power on a virtual machine without the answer param
       community.vmware.vmware_guest_powerstate:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
         validate_certs: false
         uuid: "{{ config.uuid }}"
         state: powered-on
