@@ -21,3 +21,7 @@
       delegate_to: localhost
       ignore_errors: true
       ignore_unreachable: true
+
+    - name: debug result file
+      debug:
+        var: file_contents
