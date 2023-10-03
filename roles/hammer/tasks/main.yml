@@ -15,4 +15,4 @@
   tags: [ 'never', 'force' ]
 
 
-  - ansible.builtin.import_tasks: ./vsphere.yml
+- ansible.builtin.import_tasks: ./vsphere.yml
