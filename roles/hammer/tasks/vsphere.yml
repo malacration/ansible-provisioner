@@ -25,4 +25,5 @@
     validate_certs: false
     uuid: "{{ config.uuid }}"
     state: powered-on
+  delegate_to: localhost
   tags: [ 'never', 'restart-vm' ]
