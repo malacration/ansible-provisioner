@@ -6,7 +6,7 @@
     hostname: '{{ vcenter_hostname }}'
     username: '{{ vcenter_username }}'
     password: '{{ vcenter_password }}'
-    name: "{{ guest_name }}"
+    uuid: "{{ config.uuid }}"
     state: powered-off
     validate_certs: false
   delegate_to: localhost
@@ -18,7 +18,7 @@
     hostname: "{{ vcenter_hostname }}"
     username: "{{ vcenter_username }}"
     password: "{{ vcenter_password }}"
-    name: "{{ guest_name }}"
+    uuid: "{{ config.uuid }}"
     state: shutdown-guest
     state_change_timeout: 200
     validate_certs: false
@@ -34,6 +34,6 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: false
-        name: "{{ guest_name }}"
+        uuid: "{{ config.uuid }}"
         state: powered-on
       tags: [ 'never', 'restart-vm' ]
