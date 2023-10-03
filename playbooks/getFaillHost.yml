@@ -23,5 +23,7 @@
       ignore_unreachable: true
 
     - name: debug result file
+      ignore_errors: true
+      ignore_unreachable: true
       debug:
         var: file_contents
