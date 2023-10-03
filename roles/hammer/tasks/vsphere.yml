@@ -5,7 +5,7 @@
     uuid: "{{ config.uuid }}"
     state: powered-off
     validate_certs: false
-  when: config.state != 'powered-on'
+  when: state != 'powered-on'
   delegate_to: localhost
   tags: always
 
