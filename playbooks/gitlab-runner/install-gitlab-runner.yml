@@ -4,4 +4,4 @@
     - ./vars.yml
   roles:
     - { role: ../../roles/podman }
-    - { role: riemers.gitlab-runner }
+    # - { role: riemers.gitlab-runner }
