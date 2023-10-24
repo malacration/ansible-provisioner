@@ -1,6 +1,6 @@
 ---
 
-- name: Set the state of a virtual machine to poweroff
+- name: Ligando maquinas que estão desligadas
   community.vmware.vmware_guest_powerstate:
     uuid: "{{ config.uuid }}"
     state: powered-on

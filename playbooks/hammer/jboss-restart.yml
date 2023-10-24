@@ -1,0 +1,18 @@
+# Instalar pacotes basicos para rodar o kubernetes
+- name: Manutenção em servidores jboss
+  gather_facts: no
+  hosts: all
+  vars:
+    jboss_cli_path: "/opt/jboss-eap/bin/jboss-cli.sh"
+  tasks:
+    - name: 'Check mandatory variables are defined'
+      assert:
+        that:
+          - server_group is defined
+          - jboss_cli_path is defined
+    - name: Reiniciando servidor
+      shell: "{{jboss_cli_path}} --connect --commands=/server-group={{server_group}}:restart-servers"
+      when: username is not defined
+    - name: Reiniciando servidor com credenciais
+      shell: "{{jboss_cli_path}} --connect --user={{username}} --password={{password}} --commands=/server-group={{server_group}}:restart-servers"
+      when: username is defined and username | length > 0
