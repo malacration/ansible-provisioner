@@ -1,0 +1,22 @@
+---
+- name: HTTP Request Playbook
+  hosts: all
+  gather_facts: no
+  vars:
+    request_url: "{{ url }}"  # Parâmetro para a URL
+
+  tasks:
+    - name: Make HTTP GET request
+      uri:
+        url: "{{ request_url }}"
+        return_content: yes
+        method: GET
+      register: response
+
+    - name: Display HTTP status
+      debug:
+        msg: "HTTP Status: {{ response.status }}"
+
+    - name: Display response body
+      debug:
+        msg: "Response Body: {{ response.content }}"
